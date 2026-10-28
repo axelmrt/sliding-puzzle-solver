@@ -1,67 +1,82 @@
+[🇬🇧 English](README.md) | [🇫🇷 Français](README.fr.md)
+
 # Sliding Puzzle Solver 🧩
 
-Projet pédagogique en C++ consacré au développement d'un jeu de taquin et à la recherche d'une solution optimale à l'aide de l'algorithme A*.
+A C++ sliding puzzle (Taquin) game featuring an optimal solver based on the **A\* search algorithm**.
 
-## 📌 Présentation
+This educational project aims to develop an application that allows users to play the sliding puzzle, calculate an optimal solution, and compare their moves with the minimum number of moves required to solve the puzzle.
 
-Le taquin est un jeu de réflexion composé d'une grille contenant des tuiles numérotées et une case vide. Le but est de déplacer les tuiles une par une afin de retrouver leur ordre croissant, en laissant la case vide en bas à droite.
+The project is developed in C++, with **Qt** planned for the graphical user interface and the **C++ Standard Template Library (STL)** for data structures.
 
-Ce projet a pour objectif de développer une application permettant de jouer au taquin, de calculer une solution optimale et de comparer le nombre de coups effectués par le joueur avec le minimum théorique.
+## 📌 Project Overview
 
-Le développement est réalisé en C++, avec Qt pour l'interface graphique et la STL pour les structures de données.
+The sliding puzzle consists of a square grid containing numbered tiles and one empty space. The objective is to arrange the tiles in ascending order, from left to right and top to bottom, leaving the empty space in the bottom-right corner.
 
-## 🎯 Fonctionnalités prévues
+The application is designed to support two board sizes:
 
-### Jeu de taquin
-- [x] Représentation de la grille en C++.
-- [x] Déplacements légaux des tuiles.
-- [x] Mélange de la grille par déplacements successifs.
-- [x] Vérification de la résolubilité.
-- [x] Calcul de l'heuristique de Manhattan.
-- [ ] Prise en charge complète des grilles 3×3 et 4×4.
-- [ ] Interface graphique interactive avec Qt.
-- [ ] Compteur de coups et détection de la victoire.
+- **3 × 3** — 8 numbered tiles and one empty space.
+- **4 × 4** — 15 numbered tiles and one empty space.
 
-### Résolution automatique
-- [ ] Implémentation complète de l'algorithme A*.
-- [ ] Calcul du nombre minimal de déplacements.
-- [ ] Affichage d'une solution optimale.
-- [ ] Mode d'aide avec exécution de la solution coup par coup.
-- [ ] Recalcul de la solution à partir de la configuration courante.
+## ✨ Features
 
-### Chargement de fichiers et performances
-- [ ] Chargement d'une grille depuis un fichier texte.
-- [ ] Vérification du format et de la validité de la grille.
-- [ ] Détection des configurations insolubles.
-- [ ] Mesure du temps nécessaire au calcul d'une solution.
+### 🎮 Game
 
-*Les cases cochées correspondent aux éléments déjà présents dans le code à ce stade du développement. Elles ne garantissent pas encore que tous les cas limites sont traités.*
+- [x] Board representation in C++.
+- [x] Legal tile movements.
+- [x] Board shuffling through successive legal moves.
+- [x] Solvability checking.
+- [x] Manhattan distance heuristic.
+- [ ] Full support for both 3 × 3 and 4 × 4 boards.
+- [ ] Interactive graphical interface using Qt.
+- [ ] Move counter and victory detection.
+- [ ] Comparison between the player's moves and the optimal solution.
 
-## 🧠 Algorithme A*
+### 🧠 Optimal Solver
 
-La résolution automatique reposera sur l'algorithme de recherche A*, qui explore les configurations possibles afin de trouver une solution optimale.
+- [ ] Complete implementation of the A\* search algorithm.
+- [ ] Calculation of the minimum number of moves required.
+- [ ] Retrieval of an optimal solution.
+- [ ] Step-by-step assistance mode.
+- [ ] Recalculation of the solution from the current board state.
 
-La fonction d'évaluation utilisée est :
+### 📂 File Handling and Performance
 
-**f(n) = g(n) + h(n)**
+- [ ] Load a puzzle configuration from a text file.
+- [ ] Validate board dimensions and tile values.
+- [ ] Detect invalid or unsolvable configurations.
+- [ ] Measure the time required to calculate a solution.
 
-- `g(n)` : nombre de déplacements effectués depuis la configuration initiale.
-- `h(n)` : estimation du nombre de déplacements restants, calculée à l'aide de la distance de Manhattan.
+*The checked items represent functionality already present in the codebase at this stage. They do not necessarily indicate that every edge case has been tested.*
 
-La distance de Manhattan correspond à la somme des distances horizontales et verticales entre chaque tuile et sa position finale. La case vide n'est pas prise en compte.
+## 🔍 The A\* Algorithm
 
-Cette heuristique permet de guider la recherche vers la solution tout en conservant l'optimalité de A* dans les conditions prévues par l'algorithme.
+The solver will use the A\* search algorithm to explore possible board configurations and find an optimal solution.
 
-## 🛠️ Technologies utilisées
+A\* evaluates each state using the following function:
 
-- **C++** — logique du jeu et algorithme de résolution.
-- **Qt** — interface graphique prévue.
-- **STL** — structures de données et conteneurs, notamment `std::vector` et `std::priority_queue`.
-- **Git / GitHub** — gestion des versions et du développement.
+\[
+f(n) = g(n) + h(n)
+\]
 
-## 📂 Organisation du projet
+Where:
 
-L'organisation actuelle comprend notamment les fichiers suivants :
+- `g(n)` is the cost of the path from the initial state to the current state.
+- `h(n)` is the estimated cost from the current state to the goal state.
+
+The heuristic is based on the **Manhattan distance**, calculated as the sum of the horizontal and vertical distances between each numbered tile and its target position. The empty space is excluded from this calculation.
+
+This heuristic guides the search toward the goal while preserving optimality under the algorithm's assumptions.
+
+## 🛠️ Technologies
+
+- **C++** — game logic and search algorithm.
+- **Qt** — planned graphical user interface.
+- **STL** — data structures and containers, such as `std::vector` and `std::priority_queue`.
+- **Git and GitHub** — version control and project collaboration.
+
+## 📁 Project Structure
+
+The repository currently includes the following files and directories:
 
 ```text
 sliding-puzzle-solver/
@@ -72,71 +87,79 @@ sliding-puzzle-solver/
 └── exe/
 ```
 
-- `jeu.h` : déclaration de la classe `Jeu`.
-- `jeu.cpp` : implémentation de la logique du jeu, des déplacements, du mélange, de la vérification de résolubilité et de l'heuristique.
-- `main.cpp` : point d'entrée du programme et premiers essais.
-- `grille/` : fichiers de grilles utilisés pour les tests.
-- `exe/` : dossier présent dans le dépôt, destiné aux éléments liés à l'exécution.
+- `jeu.h` — declaration of the `Jeu` class.
+- `jeu.cpp` — implementation of the game logic, tile movements, board shuffling, solvability checking, and Manhattan distance heuristic.
+- `main.cpp` — program entry point and initial tests.
+- `grille/` — directory for puzzle configurations used during testing.
+- `exe/` — directory currently present in the repository for execution-related files.
 
-L'architecture pourra évoluer afin de séparer clairement la logique du jeu, l'algorithme de résolution, la gestion des fichiers et l'interface graphique.
+The project structure may evolve as the game logic, solver, file handling, and graphical interface are separated into dedicated modules.
 
-## 🚀 Compilation et exécution
+## 🚀 Getting Started
 
-### Prérequis
+### Prerequisites
 
-- Un compilateur compatible C++.
+- A C++ compiler supporting C++17.
 - Git.
-- Qt sera nécessaire pour la future version graphique.
+- Qt will be required for the graphical version.
 
-### Récupérer le projet
+### Clone the repository
 
 ```bash
 git clone https://github.com/axelmrt/sliding-puzzle-solver.git
 cd sliding-puzzle-solver
 ```
 
-### Compilation du prototype en console
+### Compile the current console prototype
 
-Si un compilateur `g++` est disponible, la compilation des sources actuelles peut être tentée avec :
+If `g++` is installed, you can try compiling the current source files with:
 
 ```bash
 g++ -std=c++17 main.cpp jeu.cpp -o sliding-puzzle-solver
 ```
 
-Puis, sous Linux ou macOS :
+Run the executable on Linux or macOS:
 
 ```bash
 ./sliding-puzzle-solver
 ```
 
-Sous Windows, exécuter `sliding-puzzle-solver.exe`.
+On Windows, run:
 
-Cette commande correspond au prototype console actuel. Elle devra être adaptée si d'autres fichiers sources ou des dépendances Qt sont ajoutés. La compilation et l'exécution devront être vérifiées dans l'environnement utilisé pour le projet.
+```bash
+sliding-puzzle-solver.exe
+```
 
-## 🌿 Organisation du développement
+These commands are intended for the current console prototype. They may need to be updated as the project evolves, especially when Qt and additional source files are introduced.
 
-Le développement peut être organisé autour de plusieurs branches Git :
+## 🌿 Development Workflow
 
-- `main` : version stable du projet.
-- `feature/qt-interface` : développement de l'interface graphique.
-- `feature/astar-solver` : développement et tests de l'algorithme A*.
-- `integration` : intégration et validation des différentes fonctionnalités avant leur fusion dans `main`.
+Development can be organized using separate Git branches:
 
-L'objectif est de permettre le développement indépendant des différentes parties tout en conservant une interface commune entre le plateau de jeu et le solveur.
+- `main` — stable version of the project.
+- `feature/qt-interface` — graphical interface development.
+- `feature/astar-solver` — A\* implementation and solver tests.
+- `integration` — integration and validation before merging into `main`.
 
-## 📚 Objectifs pédagogiques
+The goal is to develop the graphical interface and the solving algorithm independently while maintaining a shared interface between the board model and the solver.
 
-Ce projet permet de mettre en pratique :
+## 🎓 Educational Objectives
 
-- La programmation orientée objet en C++.
-- L'utilisation des conteneurs de la STL.
-- Les algorithmes de recherche dans un espace d'états.
-- Les heuristiques et la recherche de solutions optimales.
-- La conception d'une interface graphique avec Qt.
-- La modularité du code, les tests et la gestion de versions avec Git.
+This project provides practical experience with:
 
-## 📄 Contexte
+- Object-oriented programming in C++.
+- Standard library containers and data structures.
+- Graph search algorithms and state-space exploration.
+- Heuristics and optimal pathfinding.
+- Graphical application development with Qt.
+- Modular software design, testing, and version control.
 
-Projet pédagogique réalisé dans le cadre d'un travail de développement logiciel en C++.
+## 📚 References
 
-Le projet est en cours de développement. Les fonctionnalités annoncées comme prévues seront intégrées progressivement.
+- [A\* Search — Pieter Abbeel](https://www.youtube.com/watch?v=DhtSZhakyOo)
+
+## 📄 Project Status
+
+This project is being developed as part of an educational assignment in C++.
+
+The implementation is ongoing, and the features listed as planned will be added progressively.
